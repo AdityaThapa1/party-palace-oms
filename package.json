@@ -1,0 +1,17 @@
+{
+  "name": "party-palace-oms-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A single command runner for the Party Palace OMS project.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "backend": "npm run dev --prefix backend",
+    "frontend": "npm run dev --prefix frontend",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
