@@ -32,6 +32,7 @@ import StaffLayout from './pages/Staff/StaffLayout';
 import StaffDashboard from './pages/Staff/StaffDashboard';
 import StaffBookingList from './pages/Staff/StaffBookingList';
 import StaffCustomerList from './pages/Staff/StaffCustomerList';
+import StaffInventoryList from './pages/Staff/StaffInventoryList';
 
 function App() {
 return (
@@ -73,6 +74,7 @@ duration: 4000,
             <Route path="/staff/dashboard" element={<StaffDashboard />} />
             <Route path="/staff/bookings" element={<StaffBookingList />} />
             <Route path="/staff/customers" element={<StaffCustomerList />} />
+             <Route path="/staff/inventory" element={<StaffInventoryList />} />
         </Route>
 
     {/* --- PROTECTED STAFF & ADMIN ROUTES (Dashboard etc.) --- */}

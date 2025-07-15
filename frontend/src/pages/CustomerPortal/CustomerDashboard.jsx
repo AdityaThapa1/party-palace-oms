@@ -1,3 +1,5 @@
+
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
@@ -6,11 +8,11 @@ import api from '../../services/api';
 import { format, parseISO } from 'date-fns';
 import Button from '../../components/common/Button';
 import Spinner from '../../components/common/Spinner';
-import Modal from '../../components/common/Modal'; // Ensure you have this component
+import Modal from '../../components/common/Modal';
 import CustomerBookingForm from './CustomerBookingForm';
 import { FaPlus, FaSignOutAlt, FaHome, FaEdit, FaTimesCircle } from 'react-icons/fa';
 
-// A reusable layout wrapper for all customer-facing pages.
+
 const CustomerLayout = ({ children }) => {
     const { customer, customerLogout } = useCustomerAuth();
     if (!customer) return <div className="flex h-screen items-center justify-center"><Spinner /></div>;
@@ -19,9 +21,9 @@ const CustomerLayout = ({ children }) => {
         <div className="min-h-screen bg-gray-50">
             <header className="bg-white shadow-sm sticky top-0 z-20">
                 <nav className="container mx-auto px-6 py-3 flex justify-between items-center">
-                    <Link to="/" className="flex items-center text-xl font-bold text-primary hover:opacity-80 transition">
+                    <Link to="/customer/dashboard" className="flex items-center text-xl font-bold text-primary hover:opacity-80 transition">
                        <FaHome className="mr-2" />
-                       <span>Thapagaun Banquet</span>
+                       <span>My Dashboard</span>
                     </Link>
                     <div className="flex items-center space-x-4">
                         <span className="hidden sm:inline text-gray-600">Welcome, {customer.name}</span>
@@ -39,11 +41,11 @@ const CustomerLayout = ({ children }) => {
 };
 
 
+//Main dashboard component for logged-in customers.
+
 const CustomerDashboard = () => {
     const [bookings, setBookings] = useState([]);
     const [loading, setLoading] = useState(true);
-
-    // State management for the modal pop-up 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [bookingToEdit, setBookingToEdit] = useState(null);
 
@@ -65,27 +67,24 @@ const CustomerDashboard = () => {
         fetchMyBookings();
     }, [fetchMyBookings]); // This effect runs once on component mount
 
-
-    // --- Handlers for Modal and Actions ---
-
     const handleCreateClick = () => {
-        setBookingToEdit(null); // Clear any previous edit data
+        setBookingToEdit(null);
         setIsModalOpen(true);
     };
 
     const handleEditClick = (booking) => {
-        setBookingToEdit(booking); // Pass the selected booking's data
+        setBookingToEdit(booking);
         setIsModalOpen(true);
     };
     
     const handleCloseModal = () => {
         setIsModalOpen(false);
-        setBookingToEdit(null); // Clean up state on close
+        setBookingToEdit(null);
     };
 
     const handleSuccess = () => {
-        handleCloseModal(); // Close the modal
-        fetchMyBookings();  // Refresh the data in the table
+        handleCloseModal(); 
+        fetchMyBookings(); 
     };
 
     const handleCancelBooking = async (bookingId) => {
@@ -105,12 +104,14 @@ const CustomerDashboard = () => {
         return `px-2 py-1 text-xs font-semibold leading-tight rounded-full ${classes[status] || 'bg-gray-100 text-gray-800'}`;
     };
 
+   
+
     return (
         <CustomerLayout>
             <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold text-dark">My Bookings</h2>
+                <h2 className="text-2xl font-bold text-dark">My Booking Requests</h2>
                 <Button onClick={handleCreateClick} variant="primary">
-                    <FaPlus className="mr-2"/> Request a New Booking
+                    <FaPlus className="mr-2"/> New Booking Request
                 </Button>
             </div>
             
@@ -156,7 +157,7 @@ const CustomerDashboard = () => {
                     isOpen={isModalOpen} 
                     onClose={handleCloseModal} 
                     title={bookingToEdit ? "Edit Your Booking Request" : "Request a New Booking"}
-                >
+                 >
                     <CustomerBookingForm 
                         bookingToEdit={bookingToEdit} 
                         onSuccess={handleSuccess}
@@ -166,6 +167,6 @@ const CustomerDashboard = () => {
             )}
         </CustomerLayout>
     );
-};
+}
 
 export default CustomerDashboard;

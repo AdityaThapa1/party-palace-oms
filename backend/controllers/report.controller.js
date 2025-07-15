@@ -153,13 +153,6 @@ exports.generateCustomersReport = async (req, res) => {
     }
 };
 
-// At the end of report.controller.js, add this new function:
-
-/**
- * --- NEW: FOR STAFF DASHBOARD ---
- * Fetches key metrics relevant to a Staff member. This is a slimmed-down
- * version of the main dashboard summary and does not require Admin privileges.
- */
 exports.getStaffDashboardSummary = async (req, res) => {
     try {
         const todayStart = startOfDay(new Date());

@@ -6,12 +6,11 @@ import { FaBook, FaMoneyBillWave, FaCalendarAlt, FaExclamationTriangle } from 'r
 import Spinner from '../../components/common/Spinner';
 import toast from 'react-hot-toast';
 
-// --- Imports for charts from your reference file ---
+// Imports for charts
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { format, subMonths, getMonth, getYear } from 'date-fns';
 
-// Register Chart.js components. This must be done once for the chart to render.
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const Dashboard = () => {
@@ -30,26 +29,20 @@ const Dashboard = () => {
                 const { data } = await api.get('/reports/dashboard-summary');
                 setStats(data);
 
-                // --- Chart Data Transformation Logic (from your reference) ---
                 if (data.revenueByMonth && data.revenueByMonth.length > 0) {
                     const today = new Date();
                     const labels = [];
-                    // 1. Generate labels for the last 6 months (e.g., "Jan", "Feb", ... "Jun")
                     for (let i = 5; i >= 0; i--) {
                         labels.push(format(subMonths(today, i), 'MMM'));
                     }
                     
-                    // 2. Create a complete 6-month data array, initialized to zeros.
                     const dataPoints = new Array(6).fill(0);
-                    
-                    // 3. Create a map of the API data for quick lookup (e.g., { '2024-6': 120000 })
                     const revenueMap = new Map();
                     data.revenueByMonth.forEach(item => {
                         const key = `${item.year}-${item.month}`;
                         revenueMap.set(key, parseFloat(item.total));
                     });
 
-                    // 4. Populate the dataPoints array using the revenueMap for the correct months.
                     for (let i = 5; i >= 0; i--) {
                         const targetDate = subMonths(today, i);
                         const year = getYear(targetDate);
@@ -62,7 +55,6 @@ const Dashboard = () => {
                         }
                     }
 
-                    // 5. Set the final, correctly formatted data state for the chart
                     setChartData({
                         labels,
                         datasets: [{

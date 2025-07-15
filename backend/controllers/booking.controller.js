@@ -186,14 +186,6 @@ exports.deleteByCustomer = async (req, res) => {
         res.status(500).send({ message: "Error cancelling your booking request." });
     }
 };
-// backend/controllers/booking.controller.js
-// ... (imports and all other functions)
-
-/**
- * --- NEW: FOR STAFF PANEL ---
- * Retrieves all bookings. This is accessible by Staff and Admins,
- * but the route is what determines the permission level. The logic is identical to findAll.
- */
 exports.findAllForStaff = async (req, res) => {
     try {
         const bookings = await Booking.findAll({

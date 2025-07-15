@@ -1,5 +1,3 @@
-// backend/middleware/auth.middleware.js
-
 const jwt = require('jsonwebtoken');
 const db = require('../models');
 
@@ -32,10 +30,7 @@ const isAdmin = (req, res, next) => {
 };
 
 
-/**
- * Verifies a token specifically for CUSTOMERS.
- * It checks the 'Customers' table in the database to ensure the user exists.
- */
+//Verifies a token specifically for CUSTOMERS. It checks the 'Customers' table in the database to ensure the user exists.
 const verifyCustomerToken = (req, res, next) => {
   let token = req.headers['authorization'];
 

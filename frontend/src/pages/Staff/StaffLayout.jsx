@@ -13,7 +13,7 @@ const StaffSidebar = () => {
       { to: "/staff/dashboard", icon: <RxDashboard className="mr-3" />, text: "Dashboard" },
       { to: "/staff/bookings", icon: <RxCalendar className="mr-3" />, text: "Bookings" },
       { to: "/staff/customers", icon: <RxPerson className="mr-3" />, text: "Customers" },
-      { to: "/inventory", icon: <RxCube className="mr-3" />, text: "Inventory" },
+      { to: "/staff/inventory", icon: <RxCube className="mr-3" />, text: "Inventory" },
     ];
     
     const getNavLinkClass = ({isActive}) => isActive ? `${baseLinkClasses} ${activeLinkClasses}` : baseLinkClasses;
@@ -21,7 +21,7 @@ const StaffSidebar = () => {
     return (
         <aside className="flex flex-col w-64 bg-dark text-white shadow-lg">
             <div className="flex items-center justify-center h-20 border-b border-gray-700">
-                <img src="/logo-palace.png" alt="OMS Logo" className="h-10 w-10 mr-3"/>
+                <img src="/logo.png" alt="OMS Logo" className="h-10 w-10 mr-3"/>
                 <span className="text-xl font-bold text-white">Staff Panel</span>
             </div>
             <nav className="flex-1 px-4 py-4 space-y-1">

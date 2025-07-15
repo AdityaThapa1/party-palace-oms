@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import api from '../../services/api';
 import useDebounce from '../../hooks/useDebounce'; 
-
-// Reusable UI components
 import PageHeader from '../../components/common/PageHeader';
 import Spinner from '../../components/common/Spinner';
 import { FaSearch } from 'react-icons/fa';

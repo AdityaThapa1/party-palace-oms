@@ -6,7 +6,7 @@ import PageHeader from '../../components/common/PageHeader';
 import Button from '../../components/common/Button';
 import Modal from '../../components/common/Modal';
 import Spinner from '../../components/common/Spinner';
-import BookingForm from '../Bookings/BookingForm'; // We reuse the Admin form
+import BookingForm from '../Bookings/BookingForm'; 
 import { FaPlus, FaEye } from 'react-icons/fa';
 
 const StaffBookingList = () => {
@@ -26,7 +26,6 @@ const StaffBookingList = () => {
 
     useEffect(() => { fetchBookings(); }, [fetchBookings]);
 
-    // This handler can ONLY open the modal for creating new or viewing details.
     const handleOpenModal = (booking = null) => {
         setSelectedBooking(booking);
         setIsModalOpen(true);
@@ -57,10 +56,9 @@ const StaffBookingList = () => {
                         <div className="flex justify-center items-center h-64"><Spinner /></div>
                     ) : (
                         <table className="w-full text-sm text-left text-gray-600">
-                            {/* --- THE FIX IS IN THIS THEAD SECTION --- */}
+                           
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                                 <tr>
-                                    {/* Each piece of text is correctly wrapped in a <th> tag */}
                                     <th scope="col" className="px-6 py-3">Event Type</th>
                                     <th scope="col" className="px-6 py-3">Customer</th>
                                     <th scope="col" className="px-6 py-3">Event Date</th>
@@ -68,7 +66,6 @@ const StaffBookingList = () => {
                                     <th scope="col" className="px-6 py-3 text-right">Amount (Rs)</th>
                                     <th scope="col" className="px-6 py-3 text-center">Status</th>
                                     <th scope="col" className="px-6 py-3 text-center">Actions</th>
-                                    {/* There should be no other text or whitespace here */}
                                 </tr>
                             </thead>
                             <tbody>

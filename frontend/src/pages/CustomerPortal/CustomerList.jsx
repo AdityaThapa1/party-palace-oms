@@ -3,14 +3,12 @@ import api from '../../services/api';
 import toast from 'react-hot-toast';
 import useAuth from '../../hooks/useAuth';
 import useDebounce from '../../hooks/useDebounce';
-
-// Import all required components
 import PageHeader from '../../components/common/PageHeader';
 import Button from '../../components/common/Button';
 import Modal from '../../components/common/Modal';
 import ConfirmModal from '../../components/common/ConfirmModal';
 import Spinner from '../../components/common/Spinner';
-import CustomerForm from './CustomerForm'; // Make sure this is the correct path for your Admin-facing Customer form
+import CustomerForm from './CustomerForm';
 import { FaPlus, FaEdit, FaTrash, FaSearch } from 'react-icons/fa';
 
 const CustomerList = () => {
@@ -47,8 +45,6 @@ const CustomerList = () => {
         }
     }, []);
 
-    // --- The key useEffect for data fetching ---
-    // This hook runs on the initial component mount and whenever the debounced search term changes.
     useEffect(() => {
         fetchCustomers(debouncedSearchTerm);
     }, [debouncedSearchTerm, fetchCustomers]);
@@ -66,7 +62,6 @@ const CustomerList = () => {
 
     const handleSuccess = () => {
         handleCloseModal();
-        // Refetch with the current search term to update the list
         fetchCustomers(debouncedSearchTerm);
     };
 

@@ -1,5 +1,3 @@
-// frontend/src/pages/Admin/CustomerForm.jsx
-
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 import toast from 'react-hot-toast';
